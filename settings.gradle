@@ -8,5 +8,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ToastUtils"
 include ':app'
-include ':app:toaster'
 include ':toaster'
