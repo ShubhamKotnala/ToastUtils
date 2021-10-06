@@ -12,7 +12,7 @@ class ToasterUtils {
              var toast : Toast = Toast.makeText(context,string, Toast.LENGTH_SHORT)
              val view: View? = toast.view
              view?.setBackgroundColor(context.resources.getColor(R.color.red))
-             toast.show()
+             toast.show()//show here
          }
      }
 }
