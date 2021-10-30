@@ -1,11 +1,13 @@
 package com.example.toastutils
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.toaster.view.ToastMainActivity
 import com.example.toastutils.databinding.FragmentFirstBinding
 
 /**
@@ -33,7 +35,10 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            val intent: Intent = Intent(activity, CallingActivity::class.java)
+            startActivity(intent)
+
         }
     }
 

@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -32,9 +32,6 @@ public class NetworkManager {
      * @param sslPin
      */
     public static void init(Context ctx, String sslPin, String hostName) {
-        CertificatePinner certPinner = new CertificatePinner.Builder()
-                .add(hostName, "sha256/" + sslPin).build();
-
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 /*.certificatePinner(certPinner)*/
@@ -48,6 +45,9 @@ public class NetworkManager {
                 .writeTimeout(NetworkConstants.DEFAULT_READ_WRITE_TIME_OUT, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true);
 
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.level(HttpLoggingInterceptor.Level.BODY);
+        builder.addInterceptor(logging);
 
         sOkHttpClient = builder.build();
 
@@ -58,7 +58,6 @@ public class NetworkManager {
             retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(new GsonBuilder()
                             .setLenient().create()))
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .baseUrl(NetworkManagerClient.getInstance().getBaseUrl())
                     .client(sOkHttpClient)
                     .build();

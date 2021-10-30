@@ -8,6 +8,9 @@ android {
     compileSdk 30
 
     defaultConfig {
+        configurations.all {
+            resolutionStrategy { force 'androidx.core:core-ktx:1.7.0-alpha01' }
+        }
         applicationId "com.example.toastutils"
         minSdk 21
         targetSdk 30

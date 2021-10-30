@@ -20,7 +20,7 @@ class SigninViewModel : ViewModel() {
         //apiInterface.enqueue( Callback<List<Movie>>())
         apiInterface.enqueue( object : Callback<ResponseLogin> {
             override fun onFailure(call: Call<ResponseLogin>, t: Throwable?) {
-
+                liveAction.postValue(null)
             }
 
             override fun onResponse(call: Call<ResponseLogin>, response: Response<ResponseLogin>) {
