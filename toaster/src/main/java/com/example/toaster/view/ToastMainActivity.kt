@@ -23,7 +23,7 @@ open class ToastMainActivity : AppCompatActivity() {
     lateinit var tv_4: TextView
     lateinit var button_first: Button
     lateinit var progress_circular: ProgressBar
-    lateinit var toastCallBack: ToastCallBack
+    var toastCallBack: ToastCallBack? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,17 +60,23 @@ open class ToastMainActivity : AppCompatActivity() {
                 tv_2.text = liveAction.data.firstName
                 tv_3.text = liveAction.data.lastName
                 tv_4.text = liveAction.support.text
-                toastCallBack.getResponseData(liveAction)
-            } else
-            {
+                toastCallBack?.getResponseData(liveAction)
+            } else {
                 ToasterUtils.showRedToast(this, "Something went wrong")
             }
 
         })
     }
 
-    public fun changeTextView(string: String){
+    public fun changeTextView() {
         tv_1.text = "text has been updated"
+    }
+
+    public fun changeTextViewColor(int: Int){
+        tv_1.setTextColor(int)
+        tv_2.setTextColor(int)
+        tv_3.setTextColor(int)
+        tv_4.setTextColor(int)
     }
 
     public fun recallApi(){

@@ -23,6 +23,7 @@ class CallingActivity : ToastMainActivity() , ToastMainActivity.ToastCallBack{
         //setContentView(R.layout.activity_calling)
 
         init(this)
+        //changeTextViewColor(R.color.purple_700)
     }
 
     override fun getResponseData(responseLogin: ResponseLogin){

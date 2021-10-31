@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.toaster.view.ToastCustomViewActivity
 import com.example.toaster.view.ToastMainActivity
 import com.example.toastutils.databinding.FragmentFirstBinding
 
@@ -39,6 +40,20 @@ class FirstFragment : Fragment() {
             val intent: Intent = Intent(activity, CallingActivity::class.java)
             startActivity(intent)
 
+        }
+
+        binding.buttonSecond.setOnClickListener {
+            //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            val intent: Intent = Intent(activity, ViewActivity::class.java)
+            startActivity(intent)
+
+        }
+        binding.buttonThird.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+        binding.buttonZero.setOnClickListener {
+            val intent: Intent = Intent(activity, ToastCustomViewActivity::class.java)
+            startActivity(intent)
         }
     }
 
